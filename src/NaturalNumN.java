@@ -1,49 +1,87 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class NaturalNumN {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Enter n:");
-        String Sn = reader.readLine();
-        int n = Integer.parseInt(Sn);
 
-        // 3 in n ^ 2
-        int powN = n * n;
-        boolean if3InN;
-        String poweredN = Integer.toString(powN);
-        String three = "3";
-        System.out.println(poweredN);
-        if3InN = poweredN.contains(three);
+    static class NumN {
+        public int n;
 
-        if (if3InN)
-            System.out.println("Number 3 in n ^ 2");
-        else
-            System.out.println("Number is not in n ^ 2");
+        NumN() {
 
-        System.out.println();
-        // reverse n string
-        int lengthN = Sn.length() - 1;
-        char[] arrStr = Sn.toCharArray();
+        }
 
-        System.out.println("Reversed string is: ");
-        for (int i = lengthN; i >= 0; --i)
-            System.out.print(arrStr[i]);
+        NumN(int n) {
 
-        System.out.println();
-        System.out.println();
-        // replace first and last
-        char temp = arrStr[lengthN];
-        arrStr[lengthN] = arrStr[0];
-        arrStr[0] = temp;
-        System.out.println("Replaced first and last symbol: ");
-        System.out.println(arrStr);
-        System.out.println();
+        }
 
-        // add "1" in end and start
-        System.out.println("String with added ones in start and end: ");
-        System.out.println('1' + Sn + '1');
+        public void setN(int n) {
+            this.n = n;
+        }
+
+        public int getN() {
+            return this.n;
+        }
+
+        void enter_N() throws IOException {
+            System.out.println("Enter n:");
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+            String Sn = reader.readLine();
+            this.n = Integer.parseInt(Sn);
+
+        }
+
+        private boolean three_in_powN(int n) {
+            n = n * n;
+            String powN = Integer.toString(n);
+            return (powN.contains("3"));
+
+        }
+
+        private String reverse(int n) {
+            StringBuilder newStr = new StringBuilder();
+            String nStr = Integer.toString(n);
+            char[] nToChar = nStr.toCharArray();
+            for (int i = nToChar.length - 1; i >= 0; --i) {
+                newStr.append(nToChar[i]);
+            }
+            return newStr.toString();
+        }
+
+        private String replace_last_first(int n) {
+            String replacedStr = "";
+            String nStr = Integer.toString(n);
+            char[] nToChar = nStr.toCharArray();
+            char temp = nToChar[nToChar.length - 1];
+            nToChar[nToChar.length - 1] = nToChar[0];
+            nToChar[0] = temp;
+            for (int i = 0; i < nToChar.length; ++i) {
+                replacedStr += nToChar[i];
+            }
+            return replacedStr;
+        }
+
+        private String add_ones(int n) {
+            String Sn = Integer.toString(n);
+            return "1" + Sn + "1";
+        }
+
+        void show_reversed() {
+            System.out.println(reverse(this.n));
+        }
+
+        void show_3_in_powN() {
+            System.out.println(three_in_powN(this.n));
+        }
+
+        void show_replaced() {
+            System.out.println(replace_last_first(this.n));
+        }
+
+        void show_with_ones() {
+            System.out.println(add_ones(this.n));
+        }
 
     }
 }
